@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>두 개의 그래프</title>
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        canvas {
+            max-width: 600px;
+            margin: 20px;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <h1>두 개의 그래프</h1>
+    <canvas id="chart1"></canvas>
+    <canvas id="chart2"></canvas>
+
+    <script>
+        // 첫 번째 그래프 데이터
+        var data1 = {
+            labels: ['A', 'B', 'C', 'D', 'E'],
+            datasets: [{
+                label: '데이터셋 1',
+                data: [12, 19, 3, 5, 2],
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+            }]
+        };
+
+        // 두 번째 그래프 데이터
+        var data2 = {
+            labels: ['X', 'Y', 'Z', 'W', 'V'],
+            datasets: [{
+                label: '데이터셋 2',
+                data: [3, 8, 2, 4, 6],
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                borderColor: 'rgba(255, 99, 132, 1)',
+                borderWidth: 1
+            }]
+        };
+
+        // 그래프 그리기
+        var ctx1 = document.getElementById('chart1').getContext('2d');
+        var ctx2 = document.getElementById('chart2').getContext('2d');
+
+        var chart1 = new Chart(ctx1, {
+            type: 'bar',
+            data: data1
+        });
+
+        var chart2 = new Chart(ctx2, {
+            type: 'bar',
+            data: data2
+        });
+    </script>
+</body>
+</html>
+
