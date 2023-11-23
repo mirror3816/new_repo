@@ -11,6 +11,17 @@ app = Flask(__name__)
 file_path = 'cox-violent-parsed_filt_usable.csv'
 df = pd.read_csv(file_path)
 
+# 성별에 따른 평균 나이 시각화
+@app.route('/average_age_by_gender')
+def average_age_by_gender():
+    plt.figure(figsize=(8, 6))
+    sns.barplot(x='sex', y='age', data=df)
+    plt.title('Average Age by Gender')
+    img = BytesIO()
+    plt.savefig(img, format='png')
+    img.seek(0)
+    plot_url = base64.b64encode(img.getvalue()).decode('utf8')
+    return render_template('plot.html', plot_url=plot_url)
 
 # 인종에 따른 범죄 기록 수 시각화
 @app.route('/number_of_offenses_by_race')
@@ -26,4 +37,3 @@ def number_of_offenses_by_race():
 
 if __name__ == '__main__':
     app.run(debug=True, port=1234)
-
